@@ -1,0 +1,12 @@
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\bin\Debug\net6.0\LogisticCompany.Core.deps.json
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\bin\Debug\net6.0\LogisticCompany.Core.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\bin\Debug\net6.0\LogisticCompany.Core.pdb
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.csproj.AssemblyReference.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.AssemblyInfoInputs.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.AssemblyInfo.cs
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.csproj.CoreCompileInputs.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\refint\LogisticCompany.Core.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.pdb
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\ref\LogisticCompany.Core.dll
