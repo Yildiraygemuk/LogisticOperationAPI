@@ -45,6 +45,10 @@ namespace LogisticCompany.DataAccess.Migrations
                     b.Property<DateTime>("ModifyDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("ActionType", (string)null);
@@ -236,6 +240,10 @@ namespace LogisticCompany.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -260,6 +268,14 @@ namespace LogisticCompany.DataAccess.Migrations
                     b.Property<string>("ProfilePicture")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<byte[]>("PsrHash")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("PsrSalt")
+                        .IsRequired()
+                        .HasColumnType("bytea");
 
                     b.HasKey("Id");
 

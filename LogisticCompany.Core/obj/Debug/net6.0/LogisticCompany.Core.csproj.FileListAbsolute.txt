@@ -10,3 +10,6 @@ C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Cor
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\refint\LogisticCompany.Core.dll
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.pdb
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\ref\LogisticCompany.Core.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\bin\Debug\net6.0\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\bin\Debug\net6.0\Helper.pdb
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Core\obj\Debug\net6.0\LogisticCompany.Core.csproj.CopyComplete

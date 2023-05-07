@@ -10,7 +10,7 @@ namespace LogisticCompany.Core.DataAccess.Abstract
 
         T GetById(int id);
 
-        IDataResult<T> Add(T entity);
+        Task<IDataResult<T>> AddAsync(T entity);
         IDataResult<T> Update(T entity);
 
         IDataResult<T> Delete(T entity);

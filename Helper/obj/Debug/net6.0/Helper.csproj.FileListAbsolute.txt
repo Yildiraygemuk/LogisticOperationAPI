@@ -1,0 +1,12 @@
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\bin\Debug\net6.0\Helper.deps.json
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\bin\Debug\net6.0\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\bin\Debug\net6.0\Helper.pdb
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.csproj.AssemblyReference.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.AssemblyInfoInputs.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.AssemblyInfo.cs
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.csproj.CoreCompileInputs.cache
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\refint\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\Helper.pdb
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\Helper\obj\Debug\net6.0\ref\Helper.dll

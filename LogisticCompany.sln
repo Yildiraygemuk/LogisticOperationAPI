@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticCompany.Entity", "LogisticCompany\LogisticCompany.Entity.csproj", "{89D917D2-DF01-41FD-A56B-F3A1AC1C9749}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticCompany.Entity", "LogisticCompany\LogisticCompany.Entity.csproj", "{89D917D2-DF01-41FD-A56B-F3A1AC1C9749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticCompany.Business", "LogisticCompany.Business\LogisticCompany.Business.csproj", "{E7A1D08B-DF82-4F89-9240-AB8D17152C4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticCompany.Business", "LogisticCompany.Business\LogisticCompany.Business.csproj", "{E7A1D08B-DF82-4F89-9240-AB8D17152C4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticCompany.Core", "LogisticCompany.Core\LogisticCompany.Core.csproj", "{3585619D-6ED9-4F3D-A9AE-227D370BF5AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticCompany.Core", "LogisticCompany.Core\LogisticCompany.Core.csproj", "{3585619D-6ED9-4F3D-A9AE-227D370BF5AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticCompany.DataAccess", "LogisticCompany.DataAccess\LogisticCompany.DataAccess.csproj", "{5DACCD70-8479-44D0-A9B1-5E0B7E3C5E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticCompany.DataAccess", "LogisticCompany.DataAccess\LogisticCompany.DataAccess.csproj", "{5DACCD70-8479-44D0-A9B1-5E0B7E3C5E0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticCompany.API", "LogisticCompany.API\LogisticCompany.API.csproj", "{46522B0F-C426-436A-B205-9FA6E7AE1AB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticCompany.API", "LogisticCompany.API\LogisticCompany.API.csproj", "{46522B0F-C426-436A-B205-9FA6E7AE1AB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{240911B8-EF8A-46F1-944D-EE1884BD5ACD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{46522B0F-C426-436A-B205-9FA6E7AE1AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46522B0F-C426-436A-B205-9FA6E7AE1AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46522B0F-C426-436A-B205-9FA6E7AE1AB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{240911B8-EF8A-46F1-944D-EE1884BD5ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{240911B8-EF8A-46F1-944D-EE1884BD5ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{240911B8-EF8A-46F1-944D-EE1884BD5ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{240911B8-EF8A-46F1-944D-EE1884BD5ACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

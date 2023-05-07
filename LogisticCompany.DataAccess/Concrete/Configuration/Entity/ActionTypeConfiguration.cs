@@ -13,6 +13,7 @@ namespace LogisticCompany.DataAccess.Concrete.Configuration.Entity
     {
         public override void EntityConfigure(EntityTypeBuilder<ActionType> builder)
         {
+            builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LogisticCompany.Core.DataAccess.Abstract;
 using LogisticCompany.Core.Entities.Concrete;
+using LogisticCompany.Core.Helpers;
 using LogisticCompany.Core.Utilities.Results;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,11 +17,13 @@ namespace LogisticCompany.Core.DataAccess.Concrete
     {
         protected readonly DbContext Context;
         protected readonly DbSet<TEntity> DbSet;
+        private readonly IHttpAccessorHelper _httpAccessorHelper;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(DbContext context, IHttpAccessorHelper httpAccessorHelper)
         {
             Context = context;
             DbSet = Context.Set<TEntity>();
+            _httpAccessorHelper = httpAccessorHelper;
         }
 
         public IQueryable<TEntity> GetAll()
@@ -38,19 +41,20 @@ namespace LogisticCompany.Core.DataAccess.Concrete
             return DbSet.FirstOrDefault(x => x.Id == id && !x.IsDeleted);
         }
 
-        public IDataResult<TEntity> Add(TEntity entity)
+        public async Task<IDataResult<TEntity>> AddAsync(TEntity entity)
         {
-            var addedEntity = Context.Entry(entity);
+            entity.CreatedDate = DateTime.Now.ToUniversalTime();
+            entity.CreatedBy = _httpAccessorHelper.GetUserId().Value;
+            var addedEntity = await Context.AddAsync(entity); // await ile asenkron metot çağrısını bekleyin
             addedEntity.State = EntityState.Added;
             Context.SaveChanges();
             return new SuccessDataResult<TEntity>(addedEntity.Entity);
         }
 
-
         public IDataResult<TEntity> Update(TEntity entity)
         {
             entity.ModifyDate = DateTime.Now;
-
+            entity.ModifyBy = _httpAccessorHelper.GetUserId().Value;
             var updatedEntity = Context.Entry(entity);
             updatedEntity.State = EntityState.Modified;
             Context.SaveChanges();

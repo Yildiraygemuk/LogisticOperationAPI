@@ -17,3 +17,5 @@ C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.Dat
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.DataAccess\obj\Debug\net6.0\LogisticCompany.DataAccess.pdb
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.DataAccess\obj\Debug\net6.0\LogisticCompany.DataAccess.genruntimeconfig.cache
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.DataAccess\obj\Debug\net6.0\ref\LogisticCompany.DataAccess.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.DataAccess\bin\Debug\net6.0\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.DataAccess\bin\Debug\net6.0\Helper.pdb

@@ -13,3 +13,5 @@ C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\obj
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\obj\Debug\net6.0\refint\LogisticCompany.Entity.dll
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\obj\Debug\net6.0\LogisticCompany.Entity.pdb
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\obj\Debug\net6.0\ref\LogisticCompany.Entity.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\bin\Debug\net6.0\Helper.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany\bin\Debug\net6.0\Helper.pdb
