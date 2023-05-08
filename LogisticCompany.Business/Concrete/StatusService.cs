@@ -19,15 +19,16 @@ namespace LogisticCompany.Business.Concrete
             _statusRepository = statusRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<StatusVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<StatusVm>>> GetListQueryable()
         {
-            var entityList = _statusRepository.GetAll().OrderByDescending(x => x.CreatedDate);
-            var statusVmList = _mapper.ProjectTo<StatusVm>(entityList);
+            var entityList = await _statusRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
+            var statusVmList = _mapper.ProjectTo<StatusVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<StatusVm>>(statusVmList);
         }
-        public IDataResult<StatusVm> GetById(int id)
+        public async Task<IDataResult<StatusVm>> GetById(int id)
         {
-            var entity = _statusRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _statusRepository.GetByIdAsync(id);
             var statusVm = _mapper.Map<StatusVm>(entity);
             return new SuccessDataResult<StatusVm>(statusVm);
         }
@@ -37,17 +38,17 @@ namespace LogisticCompany.Business.Concrete
             await _statusRepository.AddAsync(addEntity);
             return new SuccessDataResult<StatusDto>(statusDto);
         }
-        public IDataResult<StatusDto> Update(StatusDto statusDto)
+        public async Task<IDataResult<StatusPutDto>> Update(StatusPutDto statusDto)
         {
-            var status = _statusRepository.GetById(statusDto.Id);
+            var status = await _statusRepository.GetByIdAsync(statusDto.Id);
             if (status == null) { throw new NotFoundException(statusDto.Id); }
             status = _mapper.Map(statusDto, status);
             _statusRepository.Update(status);
-            return new SuccessDataResult<StatusDto>(statusDto);
+            return new SuccessDataResult<StatusPutDto>(statusDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _statusRepository.GetById(id);
+            var entity = await _statusRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

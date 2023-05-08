@@ -24,9 +24,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _vehicleTypeService.GetListQueryable();
+            var result = await _vehicleTypeService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -37,9 +37,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _vehicleTypeService.GetById(id);
+            var result = await _vehicleTypeService.GetById(id);
 
             if (result.Data == null)
             {
@@ -52,21 +52,21 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost]
-        public IActionResult Post(VehicleTypeDto vehicleTypeDto)
+        public async Task<IActionResult> Post(VehicleTypeDto vehicleTypeDto)
         {
-            var result = _vehicleTypeService.Post(vehicleTypeDto);
-            return StatusCode(result.Result.StatusCode, result);
+            var result = await _vehicleTypeService.Post(vehicleTypeDto);
+            return StatusCode(result.StatusCode, result);
         }
         [HttpPut]
-        public IActionResult Put(VehicleTypeDto vehicleTypeDto)
+        public async Task<IActionResult> Put(VehicleTypePutDto vehicleTypeDto)
         {
-            var result = _vehicleTypeService.Update(vehicleTypeDto);
+            var result = await _vehicleTypeService.Update(vehicleTypeDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _vehicleTypeService.Delete(id);
+            var result = await _vehicleTypeService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

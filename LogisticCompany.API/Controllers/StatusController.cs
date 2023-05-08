@@ -23,9 +23,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _statusService.GetListQueryable();
+            var result = await _statusService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -36,9 +36,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _statusService.GetById(id);
+            var result = await _statusService.GetById(id);
 
             if (result.Data == null)
             {
@@ -51,21 +51,21 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost]
-        public IActionResult Post(StatusDto statusDto)
+        public async Task<IActionResult> Post(StatusDto statusDto)
         {
-            var result = _statusService.Post(statusDto);
-            return StatusCode(result.Result.StatusCode, result);
+            var result = await _statusService.Post(statusDto);
+            return StatusCode(result.StatusCode, result);
         }
         [HttpPut]
-        public IActionResult Put(StatusDto statusDto)
+        public async Task<IActionResult> Put(StatusPutDto statusDto)
         {
-            var result = _statusService.Update(statusDto);
+            var result = await _statusService.Update(statusDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _statusService.Delete(id);
+            var result = await _statusService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

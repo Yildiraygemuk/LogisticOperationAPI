@@ -24,9 +24,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _maintenanceService.GetListQueryable();
+            var result = await _maintenanceService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -37,9 +37,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _maintenanceService.GetById(id);
+            var result = await _maintenanceService.GetById(id);
 
             if (result.Data == null)
             {
@@ -52,27 +52,27 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost]
-        public IActionResult Post(MaintenanceDto maintenanceDto)
+        public async Task<IActionResult> Post(MaintenanceDto maintenanceDto)
         {
-            var result = _maintenanceService.Post(maintenanceDto).Result;
+            var result = await _maintenanceService.Post(maintenanceDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpPut]
-        public IActionResult Put(MaintenanceDto maintenanceDto)
+        public async Task<IActionResult> Put(MaintenancePutDto maintenanceDto)
         {
-            var result = _maintenanceService.Update(maintenanceDto);
+            var result = await _maintenanceService.Update(maintenanceDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpPut("UpdateStatus")]
-        public IActionResult UpdateStatus(MaintenanceStatusDto maintenanceStatus)
+        public async Task<IActionResult> UpdateStatus(MaintenanceStatusDto maintenanceStatus)
         {
-            var result = _maintenanceService.UpdateStatus(maintenanceStatus);
-            return StatusCode(result.Result.StatusCode, result.Result);
+            var result = await _maintenanceService.UpdateStatus(maintenanceStatus);
+            return StatusCode(result.StatusCode, result);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _maintenanceService.Delete(id);
+            var result = await _maintenanceService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

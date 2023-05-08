@@ -19,15 +19,16 @@ namespace LogisticCompany.Business.Concrete
             _vehicleRepository = vehicleRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<VehicleVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<VehicleVm>>> GetListQueryable()
         {
-            var entityList = _vehicleRepository.GetAll().OrderByDescending(x => x.CreatedDate);
-            var vehicleVmList = _mapper.ProjectTo<VehicleVm>(entityList);
+            var entityList = await _vehicleRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
+            var vehicleVmList = _mapper.ProjectTo<VehicleVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<VehicleVm>>(vehicleVmList);
         }
-        public IDataResult<VehicleVm> GetById(int id)
+        public async Task<IDataResult<VehicleVm>> GetById(int id)
         {
-            var entity = _vehicleRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _vehicleRepository.GetByIdAsync(id);
             var vehicleVm = _mapper.Map<VehicleVm>(entity);
             return new SuccessDataResult<VehicleVm>(vehicleVm);
         }
@@ -37,17 +38,17 @@ namespace LogisticCompany.Business.Concrete
             await _vehicleRepository.AddAsync(addEntity);
             return new SuccessDataResult<VehicleDto>(vehicleDto);
         }
-        public IDataResult<VehicleDto> Update(VehicleDto vehicleDto)
+        public async Task<IDataResult<VehiclePutDto>> Update(VehiclePutDto vehicleDto)
         {
-            var vehicle = _vehicleRepository.GetById(vehicleDto.Id);
+            var vehicle = await _vehicleRepository.GetByIdAsync(vehicleDto.Id);
             if (vehicle == null) { throw new NotFoundException(vehicleDto.Id); }
             vehicle = _mapper.Map(vehicleDto, vehicle);
             _vehicleRepository.Update(vehicle);
-            return new SuccessDataResult<VehicleDto>(vehicleDto);
+            return new SuccessDataResult<VehiclePutDto>(vehicleDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _vehicleRepository.GetById(id);
+            var entity = await _vehicleRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

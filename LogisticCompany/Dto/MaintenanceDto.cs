@@ -2,7 +2,6 @@
 {
     public class MaintenanceDto
     {
-        public int Id { get; set; }
         public int VehicleID { get; set; }
         public int UserID { get; set; }
         public string Description { get; set; }

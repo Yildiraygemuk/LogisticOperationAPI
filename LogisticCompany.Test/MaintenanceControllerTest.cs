@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogisticCompany.Test
 {
-    public class MaintenanceControllerTest
+    internal class MaintenanceControllerTest
     {
-       
     }
 }

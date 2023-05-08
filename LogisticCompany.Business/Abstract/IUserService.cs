@@ -6,10 +6,10 @@ namespace LogisticCompany.Business.Abstract
 {
     public interface IUserService
     {
-        IDataResult<IQueryable<UserVm>> GetListQueryable();
-        IDataResult<UserVm> GetById(int id);
+        Task<IDataResult<IQueryable<UserVm>>> GetListQueryable();
+        Task<IDataResult<UserVm>> GetById(int id);
         Task<IResult> Post(UserForRegisterDto userForRegisterDto);
-        IResult Update(UserDto userDto);
-        IResult Delete(int id);
+        Task<IResult> Update(UserDto userDto);
+        Task<IResult> Delete(int id);
     }
 }

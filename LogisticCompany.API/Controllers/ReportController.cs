@@ -1,5 +1,6 @@
 ﻿using LogisticCompany.Business.Abstract;
 using LogisticCompany.Entity.Vm;
+using LogisticCompany.Entity.Vm.Report;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,13 +21,13 @@ namespace LogisticCompany.API.Controllers
             _reportService = reportService;
         }
 
-        [ProducesResponseType(typeof(MaintenanceVm), 200)]
+        [ProducesResponseType(typeof(MaintenanceForStatusVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("MaintenanceForStatus")]
-        public IActionResult MaintenanceForStatus(int statusId)
+        public async Task<IActionResult> MaintenanceForStatus(int statusId)
         {
-            var result = _reportService.MaintenanceForStatus(statusId).Result;
+            var result = await _reportService.MaintenanceForStatus(statusId);
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -34,13 +35,13 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
 
-         [ProducesResponseType(typeof(MaintenanceVm), 200)]
+         [ProducesResponseType(typeof(MaintenanceForStatusVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
-        [HttpGet("ResponsibleUserInfo")]
-        public IActionResult ResponsibleUserInfo()
+        [HttpGet("ActionTypeCountReports")]
+        public async Task<IActionResult> ActionTypeCountReports()
         {
-            var result = _reportService.ActionTypeCountReports().Result;
+            var result = await _reportService.ActionTypeCountReports();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -48,13 +49,13 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
 
-        [ProducesResponseType(typeof(MaintenanceVm), 200)]
+        [ProducesResponseType(typeof(MonthlyMaintenanceReportVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("MonthlyMaintenance")]
-        public IActionResult MonthlyMaintenance()
+        public async Task<IActionResult> MonthlyMaintenance()
         {
-            var result = _reportService.MonthlyMaintenance().Result;
+            var result = await _reportService.MonthlyMaintenance();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -62,13 +63,13 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         } 
         
-        [ProducesResponseType(typeof(MaintenanceVm), 200)]
+        [ProducesResponseType(typeof(MaintenanceTimeReportVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("MaintenanceTimeReport")]
-        public IActionResult MaintenanceTimeReport()
+        public async Task<IActionResult> MaintenanceTimeReport()
         {
-            var result = _reportService.MaintenanceTimeReport().Result;
+            var result = await _reportService.MaintenanceTimeReport();
             if (result.Success)
             {
                 return Ok(result.Data);

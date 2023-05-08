@@ -23,23 +23,23 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _userService.GetListQueryable();
+            var result = await _userService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
             }
             return BadRequest(result.Message);
         }
-    [LogisticCompanyAuthorize]
+        [LogisticCompanyAuthorize]
         [ProducesResponseType(typeof(UserVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _userService.GetById(id);
+            var result = await _userService.GetById(id);
 
             if (result.Data == null)
             {
@@ -53,23 +53,23 @@ namespace LogisticCompany.API.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Register(UserForRegisterDto userDto)
+        public async Task<IActionResult> Register(UserForRegisterDto userDto)
         {
-            var result = _userService.Post(userDto);
-            return StatusCode(result.Result.StatusCode, result.Result);
-        }
-    [LogisticCompanyAuthorize]
-        [HttpPut]
-        public IActionResult Put(UserDto userDto)
-        {
-            var result = _userService.Update(userDto);
+            var result = await _userService.Post(userDto);
             return StatusCode(result.StatusCode, result);
         }
-    [LogisticCompanyAuthorize]
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [LogisticCompanyAuthorize]
+        [HttpPut]
+        public async Task<IActionResult> Put(UserDto userDto)
         {
-            var result = _userService.Delete(id);
+            var result = await _userService.Update(userDto);
+            return StatusCode(result.StatusCode, result);
+        }
+        [LogisticCompanyAuthorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _userService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

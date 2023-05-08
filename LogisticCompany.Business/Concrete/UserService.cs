@@ -20,15 +20,16 @@ namespace LogisticCompany.Business.Concrete
             _userRepository = userRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<UserVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<UserVm>>> GetListQueryable()
         {
-            var entityList = _userRepository.GetAll().OrderByDescending(x => x.CreatedDate);
-            var userVmList = _mapper.ProjectTo<UserVm>(entityList);
+            var entityList = await _userRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
+            var userVmList = _mapper.ProjectTo<UserVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<UserVm>>(userVmList);
         }
-        public IDataResult<UserVm> GetById(int id)
+        public async Task<IDataResult<UserVm>> GetById(int id)
         {
-            var entity = _userRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _userRepository.GetByIdAsync(id);
             var userVm = _mapper.Map<UserVm>(entity);
             return new SuccessDataResult<UserVm>(userVm);
         }
@@ -49,17 +50,17 @@ namespace LogisticCompany.Business.Concrete
             await _userRepository.AddAsync(user);
             return new SuccessResult();
         }
-        public IResult Update(UserDto userDto)
+        public async Task<IResult> Update(UserDto userDto)
         {
-            var user = _userRepository.GetById(userDto.Id);
+            var user = await _userRepository.GetByIdAsync(userDto.Id);
             if (user == null) { throw new NotFoundException(userDto.Id); }
             user = _mapper.Map(userDto, user);
             _userRepository.Update(user);
             return new SuccessResult();
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _userRepository.GetById(id);
+            var entity = await _userRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

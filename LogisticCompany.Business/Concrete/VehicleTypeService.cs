@@ -19,15 +19,16 @@ namespace LogisticCompany.Business.Concrete
             _vehicleTypeRepository = vehicleTypeRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<VehicleTypeVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<VehicleTypeVm>>> GetListQueryable()
         {
-            var entityList = _vehicleTypeRepository.GetAll().OrderByDescending(x => x.CreatedDate);
-            var vehicleTypeVmList = _mapper.ProjectTo<VehicleTypeVm>(entityList);
+            var entityList = await _vehicleTypeRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
+            var vehicleTypeVmList = _mapper.ProjectTo<VehicleTypeVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<VehicleTypeVm>>(vehicleTypeVmList);
         }
-        public IDataResult<VehicleTypeVm> GetById(int id)
+        public async Task<IDataResult<VehicleTypeVm>> GetById(int id)
         {
-            var entity = _vehicleTypeRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _vehicleTypeRepository.GetByIdAsync(id);
             var vehicleTypeVm = _mapper.Map<VehicleTypeVm>(entity);
             return new SuccessDataResult<VehicleTypeVm>(vehicleTypeVm);
         }
@@ -37,17 +38,17 @@ namespace LogisticCompany.Business.Concrete
             await _vehicleTypeRepository.AddAsync(addEntity);
             return new SuccessDataResult<VehicleTypeDto>(vehicleTypeDto);
         }
-        public IDataResult<VehicleTypeDto> Update(VehicleTypeDto vehicleTypeDto)
+        public async Task<IDataResult<VehicleTypePutDto>> Update(VehicleTypePutDto vehicleTypeDto)
         {
-            var vehicleType = _vehicleTypeRepository.GetById(vehicleTypeDto.Id);
+            var vehicleType = await _vehicleTypeRepository.GetByIdAsync(vehicleTypeDto.Id);
             if (vehicleType == null) { throw new NotFoundException(vehicleTypeDto.Id); }
             vehicleType = _mapper.Map(vehicleTypeDto, vehicleType);
             _vehicleTypeRepository.Update(vehicleType);
-            return new SuccessDataResult<VehicleTypeDto>(vehicleTypeDto);
+            return new SuccessDataResult<VehicleTypePutDto>(vehicleTypeDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _vehicleTypeRepository.GetById(id);
+            var entity = await _vehicleTypeRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

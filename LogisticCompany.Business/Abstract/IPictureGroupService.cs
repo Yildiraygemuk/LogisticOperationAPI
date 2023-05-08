@@ -6,10 +6,10 @@ namespace LogisticCompany.Business.Abstract
 {
     public interface IPictureGroupService
     {
-        IDataResult<IQueryable<PictureGroupVm>> GetListQueryable();
-        IDataResult<PictureGroupVm> GetById(int id);
+        Task<IDataResult<IQueryable<PictureGroupVm>>> GetListQueryable();
+        Task<IDataResult<PictureGroupVm>> GetById(int id);
         Task<IDataResult<PictureGroupDto>> Post(PictureGroupDto pictureGroupDto);
-        IDataResult<PictureGroupDto> Update(PictureGroupDto pictureGroupDto);
-        IResult Delete(int id);
+        Task<IDataResult<PictureGroupPutDto>> Update(PictureGroupPutDto pictureGroupDto);
+        Task<IResult> Delete(int id);
     }
 }

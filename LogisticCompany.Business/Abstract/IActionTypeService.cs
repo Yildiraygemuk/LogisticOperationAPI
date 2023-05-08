@@ -9,7 +9,7 @@ namespace LogisticCompany.Business.Abstract
         Task<IDataResult<IQueryable<ActionTypeVm>>> GetListQueryable();
         Task<IDataResult<ActionTypeVm>> GetById(int id);
         Task<IDataResult<ActionTypeDto>> Post(ActionTypeDto actionTypeDto);
-        Task<IDataResult<ActionTypeDto>> Update(ActionTypeDto actionTypeDto);
+        Task<IDataResult<ActionTypePutDto>> Update(ActionTypePutDto actionTypeDto);
         Task<IResult> Delete(int id);
     }
 }

@@ -53,13 +53,13 @@ namespace LogisticCompany.Business.Concrete
             }
             return new SuccessDataResult<MaintenanceDto>(maintenanceDto);
         }
-        public async Task<IDataResult<MaintenanceDto>> Update(MaintenanceDto maintenanceDto)
+        public async Task<IDataResult<MaintenancePutDto>> Update(MaintenancePutDto maintenanceDto)
         {
             var maintenance = await _maintenanceRepository.GetByIdAsync(maintenanceDto.Id);
             if (maintenance == null) { throw new NotFoundException(maintenanceDto.Id); }
             maintenance = _mapper.Map(maintenanceDto, maintenance);
             _maintenanceRepository.Update(maintenance);
-            return new SuccessDataResult<MaintenanceDto>(maintenanceDto);
+            return new SuccessDataResult<MaintenancePutDto>(maintenanceDto);
         }
 
         public async Task<IResult> UpdateStatus(MaintenanceStatusDto maintenanceStatus)

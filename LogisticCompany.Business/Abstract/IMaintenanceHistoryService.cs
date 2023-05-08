@@ -9,7 +9,7 @@ namespace LogisticCompany.Business.Abstract
         Task<IDataResult<IQueryable<MaintenanceHistoryVm>>> GetListQueryable();
         Task<IDataResult<MaintenanceHistoryVm>> GetById(int id);
         Task<IDataResult<MaintenanceHistoryDto>> Post(MaintenanceHistoryDto maintenanceHistoryDto);
-        Task<IDataResult<MaintenanceHistoryDto>> Update(MaintenanceHistoryDto maintenanceHistoryDto);
+        Task<IDataResult<MaintenanceHistoryPutDto>> Update(MaintenanceHistoryPutDto maintenanceHistoryDto);
         Task<IResult> Delete(int id);
     }
 }

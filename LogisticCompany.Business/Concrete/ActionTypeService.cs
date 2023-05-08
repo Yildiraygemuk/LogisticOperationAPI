@@ -23,7 +23,7 @@ namespace LogisticCompany.Business.Concrete
         {
             var entityList = await _actionTypeRepository.GetAllAsync();
             var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
-            var actionTypeVmList = _mapper.ProjectTo<ActionTypeVm>(entityList);
+            var actionTypeVmList = _mapper.ProjectTo<ActionTypeVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<ActionTypeVm>>(actionTypeVmList);
         }
         public async Task<IDataResult<ActionTypeVm>> GetById(int id)
@@ -38,13 +38,13 @@ namespace LogisticCompany.Business.Concrete
             await _actionTypeRepository.AddAsync(addEntity);
             return new SuccessDataResult<ActionTypeDto>(actionTypeDto);
         }
-        public async Task<IDataResult<ActionTypeDto>> Update(ActionTypeDto actionTypeDto)
+        public async Task<IDataResult<ActionTypePutDto>> Update(ActionTypePutDto actionTypeDto)
         {
             var actionType = await _actionTypeRepository.GetByIdAsync(actionTypeDto.Id);
             if (actionType == null) { throw new NotFoundException(actionTypeDto.Id); }
             actionType = _mapper.Map(actionTypeDto, actionType);
             _actionTypeRepository.Update(actionType);
-            return new SuccessDataResult<ActionTypeDto>(actionTypeDto);
+            return new SuccessDataResult<ActionTypePutDto>(actionTypeDto);
         }
         public async Task<IResult> Delete(int id)
         {

@@ -71,6 +71,10 @@
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "xunit.extensibility.core": {
+              "target": "Package",
+              "version": "[2.4.2, )"
             }
           },
           "imports": [

@@ -23,9 +23,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _vehicleService.GetListQueryable();
+            var result = await _vehicleService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -36,9 +36,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _vehicleService.GetById(id);
+            var result = await _vehicleService.GetById(id);
 
             if (result.Data == null)
             {
@@ -51,21 +51,21 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost]
-        public IActionResult Post(VehicleDto vehicleDto)
+        public async Task<IActionResult> Post(VehicleDto vehicleDto)
         {
-            var result = _vehicleService.Post(vehicleDto);
-            return StatusCode(result.Result.StatusCode, result);
+            var result = await _vehicleService.Post(vehicleDto);
+            return StatusCode(result.StatusCode, result);
         }
         [HttpPut]
-        public IActionResult Put(VehicleDto vehicleDto)
+        public async Task<IActionResult> Put(VehiclePutDto vehicleDto)
         {
-            var result = _vehicleService.Update(vehicleDto);
+            var result = await _vehicleService.Update(vehicleDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _vehicleService.Delete(id);
+            var result = await _vehicleService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

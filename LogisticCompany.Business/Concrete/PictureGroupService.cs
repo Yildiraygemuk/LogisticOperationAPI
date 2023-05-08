@@ -28,7 +28,7 @@ namespace LogisticCompany.Business.Concrete
         {
             var entityList = await _actionTypeRepository.GetAllAsync();
             var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
-            var actionTypeVmList = _mapper.ProjectTo<PictureGroupVm>(entityList);
+            var actionTypeVmList = _mapper.ProjectTo<PictureGroupVm>(sortedEntityList);
             return new SuccessDataResult<IQueryable<PictureGroupVm>>(actionTypeVmList);
         }
         public async Task<IDataResult<PictureGroupVm>> GetById(int id)
@@ -43,17 +43,17 @@ namespace LogisticCompany.Business.Concrete
             await _actionTypeRepository.AddAsync(addEntity);
             return new SuccessDataResult<PictureGroupDto>(actionTypeDto);
         }
-        public IDataResult<PictureGroupDto> Update(PictureGroupDto actionTypeDto)
+        public async Task<IDataResult<PictureGroupPutDto>> Update(PictureGroupPutDto actionTypeDto)
         {
-            var actionType = _actionTypeRepository.GetById(actionTypeDto.Id);
+            var actionType = await _actionTypeRepository.GetByIdAsync(actionTypeDto.Id);
             if (actionType == null) { throw new NotFoundException(actionTypeDto.Id); }
             actionType = _mapper.Map(actionTypeDto, actionType);
             _actionTypeRepository.Update(actionType);
-            return new SuccessDataResult<PictureGroupDto>(actionTypeDto);
+            return new SuccessDataResult<PictureGroupPutDto>(actionTypeDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _actionTypeRepository.GetById(id);
+            var entity = await _actionTypeRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

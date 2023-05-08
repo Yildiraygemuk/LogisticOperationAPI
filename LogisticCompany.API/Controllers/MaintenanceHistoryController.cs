@@ -23,9 +23,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetList")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _maintenanceHistoryService.GetListQueryable();
+            var result = await _maintenanceHistoryService.GetListQueryable();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -36,9 +36,9 @@ namespace LogisticCompany.API.Controllers
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
         [HttpGet("GetById/{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _maintenanceHistoryService.GetById(id);
+            var result = await _maintenanceHistoryService.GetById(id);
 
             if (result.Data == null)
             {
@@ -51,21 +51,21 @@ namespace LogisticCompany.API.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost]
-        public IActionResult Post(MaintenanceHistoryDto maintenanceHistoryDto)
+        public async Task<IActionResult> Post(MaintenanceHistoryDto maintenanceHistoryDto)
         {
-            var result = _maintenanceHistoryService.Post(maintenanceHistoryDto);
-            return StatusCode(result.Result.StatusCode, result);
+            var result = await _maintenanceHistoryService.Post(maintenanceHistoryDto);
+            return StatusCode(result.StatusCode, result);
         }
         [HttpPut]
-        public IActionResult Put(MaintenanceHistoryDto maintenanceHistoryDto)
+        public async Task<IActionResult> Put(MaintenanceHistoryPutDto maintenanceHistoryDto)
         {
-            var result = _maintenanceHistoryService.Update(maintenanceHistoryDto);
+            var result = await _maintenanceHistoryService.Update(maintenanceHistoryDto);
             return StatusCode(result.StatusCode, result);
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _maintenanceHistoryService.Delete(id);
+            var result = await _maintenanceHistoryService.Delete(id);
             return StatusCode(result.StatusCode, result);
         }
     }

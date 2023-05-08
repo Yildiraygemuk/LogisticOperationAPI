@@ -28,10 +28,10 @@ namespace LogisticCompany.Business.Concrete
 
         public async Task<IDataResult<IQueryable<MaintenanceForStatusVm>>> MaintenanceForStatus(int statusId)
         {
-            var maintenances = _maintenanceService.GetListQueryable().Data;
-            var statusName = _statusRepository.GetById(statusId)?.Name;
-            var maintenancesReport = maintenances
-                .Where(m => m.Status == statusName)
+            var maintenances = await _maintenanceService.GetListQueryable();
+            var statusName = await _statusRepository.GetByIdAsync(statusId);
+            var maintenancesReport = maintenances.Data
+                .Where(m => m.Status == statusName.Name)
                 .GroupBy(m => m.Status)
                 .Select(g => new MaintenanceForStatusVm
                 {
@@ -52,7 +52,7 @@ namespace LogisticCompany.Business.Concrete
         }
         public async Task<IDataResult<IQueryable<ActionTypeReportVm>>> ActionTypeCountReports()
         {
-            var maintenanceHistoryList = _maintenanceHistoryRepository.GetAll();
+            var maintenanceHistoryList = await _maintenanceHistoryRepository.GetAllAsync();
 
             var result = maintenanceHistoryList
                 .GroupBy(h => h.ActionTypeId)
@@ -63,7 +63,7 @@ namespace LogisticCompany.Business.Concrete
         }
         public async Task<IDataResult<IQueryable<MonthlyMaintenanceReportVm>>> MonthlyMaintenance()
         {
-            var maintenanceHistoryList = _maintenanceHistoryRepository.GetAll();
+            var maintenanceHistoryList = await _maintenanceHistoryRepository.GetAllAsync();
 
             var maintenanceByMonth = maintenanceHistoryList
                     .GroupBy(h => new { Year = h.CreatedDate.Year, Month = h.CreatedDate.Month })
@@ -76,10 +76,10 @@ namespace LogisticCompany.Business.Concrete
         
         public async Task<IDataResult<IQueryable<MaintenanceTimeReportVm>>> MaintenanceTimeReport()
         {
-            var maintenanceHistoryList = _maintenanceService.GetListQueryable();
+            var maintenanceHistoryList = await _maintenanceService.GetListQueryable();
 
             var result = maintenanceHistoryList.Data
-                     .Select(m => new MaintenanceTimeReportVm {MaintenanceId= m.Id, Hour = (DateTime.Now.ToUniversalTime() - m.ExceptedTimeToFix.ToUniversalTime()).TotalHours.ToString("N2") })
+                     .Select(m => new MaintenanceTimeReportVm {MaintenanceId= m.Id, Hour = $"{(int)(DateTime.Now.ToUniversalTime() - m.ExceptedTimeToFix.ToUniversalTime()).TotalHours}:{(DateTime.Now.ToUniversalTime() - m.ExceptedTimeToFix.ToUniversalTime()).Minutes.ToString("D2")}" })
                      .AsQueryable();
 
             return new SuccessDataResult<IQueryable<MaintenanceTimeReportVm>>(result);
