@@ -3,11 +3,11 @@ using LogisticCompany.Business.Attributes;
 using LogisticCompany.Core.Entities.Exceptions;
 using LogisticCompany.Entity.Dto;
 using LogisticCompany.Entity.Vm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LogisticCompany.API.Controllers
 {
-    [LogisticCompanyAuthorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -18,7 +18,7 @@ namespace LogisticCompany.API.Controllers
         {
             _userService = userService;
         }
-
+        [LogisticCompanyAuthorize]
         [ProducesResponseType(typeof(UserVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
@@ -32,6 +32,7 @@ namespace LogisticCompany.API.Controllers
             }
             return BadRequest(result.Message);
         }
+    [LogisticCompanyAuthorize]
         [ProducesResponseType(typeof(UserVm), 200)]
         [ProducesResponseType(typeof(object), 403)]
         [ProducesResponseType(typeof(object), 401)]
@@ -50,18 +51,21 @@ namespace LogisticCompany.API.Controllers
             }
             return BadRequest(result.Message);
         }
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Post(UserForRegisterDto userDto)
+        public IActionResult Register(UserForRegisterDto userDto)
         {
             var result = _userService.Post(userDto);
-            return StatusCode(result.Result.StatusCode, result);
+            return StatusCode(result.Result.StatusCode, result.Result);
         }
+    [LogisticCompanyAuthorize]
         [HttpPut]
         public IActionResult Put(UserDto userDto)
         {
             var result = _userService.Update(userDto);
             return StatusCode(result.StatusCode, result);
         }
+    [LogisticCompanyAuthorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -19,15 +19,16 @@ namespace LogisticCompany.Business.Concrete
             _maintenanceHistoryRepository = maintenanceHistoryRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<MaintenanceHistoryVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<MaintenanceHistoryVm>>> GetListQueryable()
         {
-            var entityList = _maintenanceHistoryRepository.GetAll().OrderByDescending(x => x.CreatedDate);
+            var entityList = await _maintenanceHistoryRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
             var maintenanceHistoryVmList = _mapper.ProjectTo<MaintenanceHistoryVm>(entityList);
             return new SuccessDataResult<IQueryable<MaintenanceHistoryVm>>(maintenanceHistoryVmList);
         }
-        public IDataResult<MaintenanceHistoryVm> GetById(int id)
+        public async Task<IDataResult<MaintenanceHistoryVm>> GetById(int id)
         {
-            var entity = _maintenanceHistoryRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _maintenanceHistoryRepository.GetByIdAsync(id);
             var maintenanceHistoryVm = _mapper.Map<MaintenanceHistoryVm>(entity);
             return new SuccessDataResult<MaintenanceHistoryVm>(maintenanceHistoryVm);
         }
@@ -37,17 +38,17 @@ namespace LogisticCompany.Business.Concrete
             await _maintenanceHistoryRepository.AddAsync(addEntity);
             return new SuccessDataResult<MaintenanceHistoryDto>(maintenanceHistoryDto);
         }
-        public IDataResult<MaintenanceHistoryDto> Update(MaintenanceHistoryDto maintenanceHistoryDto)
+        public async Task<IDataResult<MaintenanceHistoryDto>> Update(MaintenanceHistoryDto maintenanceHistoryDto)
         {
-            var maintenanceHistory = _maintenanceHistoryRepository.GetById(maintenanceHistoryDto.Id);
+            var maintenanceHistory = await _maintenanceHistoryRepository.GetByIdAsync(maintenanceHistoryDto.Id);
             if (maintenanceHistory == null) { throw new NotFoundException(maintenanceHistoryDto.Id); }
             maintenanceHistory = _mapper.Map(maintenanceHistoryDto, maintenanceHistory);
             _maintenanceHistoryRepository.Update(maintenanceHistory);
             return new SuccessDataResult<MaintenanceHistoryDto>(maintenanceHistoryDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _maintenanceHistoryRepository.GetById(id);
+            var entity = await _maintenanceHistoryRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();

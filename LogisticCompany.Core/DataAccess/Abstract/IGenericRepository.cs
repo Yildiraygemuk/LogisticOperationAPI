@@ -7,8 +7,9 @@ namespace LogisticCompany.Core.DataAccess.Abstract
     public interface IGenericRepository<T> where T : BaseEntity, new()
     {
         IQueryable<T> GetAll();
-
-        T GetById(int id);
+        Task<IQueryable<T>> GetAllAsync();
+        Task<T> GetAsync(Expression<Func<T, bool>> filter);
+        Task<T> GetByIdAsync(int id);
 
         Task<IDataResult<T>> AddAsync(T entity);
         IDataResult<T> Update(T entity);

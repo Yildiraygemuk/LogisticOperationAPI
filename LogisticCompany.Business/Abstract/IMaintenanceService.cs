@@ -6,10 +6,11 @@ namespace LogisticCompany.Business.Abstract
 {
     public interface IMaintenanceService
     {
-        IDataResult<IQueryable<MaintenanceVm>> GetListQueryable();
-        IDataResult<MaintenanceVm> GetById(int id);
+        Task<IDataResult<IQueryable<MaintenanceVm>>> GetListQueryable();
+        Task<IDataResult<MaintenanceVm>> GetById(int id);
         Task<IDataResult<MaintenanceDto>> Post(MaintenanceDto maintenanceDto);
-        IDataResult<MaintenanceDto> Update(MaintenanceDto maintenanceDto);
-        IResult Delete(int id);
+        Task<IDataResult<MaintenanceDto>> Update(MaintenanceDto maintenanceDto);
+        Task<IResult> UpdateStatus(MaintenanceStatusDto maintenanceStatus);
+        Task<IResult> Delete(int id);
     }
 }

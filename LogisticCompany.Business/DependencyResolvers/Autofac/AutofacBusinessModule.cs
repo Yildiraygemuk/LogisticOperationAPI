@@ -22,6 +22,7 @@ namespace LogisticCompany.Business.DependencyResolvers.Autofac
             builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<VehicleTypeService>().As<IVehicleTypeService>();
             builder.RegisterType<AuthService>().As<IAuthService>();
+            builder.RegisterType<ReportService>().As<IReportService>();
 
             builder.RegisterType<ActionTypeRepository>().As<IActionTypeRepository>();
             builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>();

@@ -24,15 +24,16 @@ namespace LogisticCompany.Business.Concrete
             _actionTypeRepository = actionTypeRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<PictureGroupVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<PictureGroupVm>>> GetListQueryable()
         {
-            var entityList = _actionTypeRepository.GetAll().OrderByDescending(x => x.CreatedDate);
+            var entityList = await _actionTypeRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
             var actionTypeVmList = _mapper.ProjectTo<PictureGroupVm>(entityList);
             return new SuccessDataResult<IQueryable<PictureGroupVm>>(actionTypeVmList);
         }
-        public IDataResult<PictureGroupVm> GetById(int id)
+        public async Task<IDataResult<PictureGroupVm>> GetById(int id)
         {
-            var entity = _actionTypeRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _actionTypeRepository.GetByIdAsync(id);
             var actionTypeVm = _mapper.Map<PictureGroupVm>(entity);
             return new SuccessDataResult<PictureGroupVm>(actionTypeVm);
         }

@@ -26,25 +26,28 @@ namespace LogisticCompany.Core.DataAccess.Concrete
             _httpAccessorHelper = httpAccessorHelper;
         }
 
+        public async Task<IQueryable<TEntity>> GetAllAsync()
+        {
+            return await Task.FromResult(DbSet.AsQueryable().Where(x => !x.IsDeleted));
+        }
         public IQueryable<TEntity> GetAll()
         {
             return DbSet.AsQueryable().Where(x => !x.IsDeleted);
         }
-
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return DbSet.Where(x => !x.IsDeleted).FirstOrDefault(filter);
+            return await DbSet.Where(x => !x.IsDeleted).FirstOrDefaultAsync(filter);
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return DbSet.FirstOrDefault(x => x.Id == id && !x.IsDeleted);
+            return await DbSet.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
         }
 
         public async Task<IDataResult<TEntity>> AddAsync(TEntity entity)
         {
             entity.CreatedDate = DateTime.Now.ToUniversalTime();
-            entity.CreatedBy = _httpAccessorHelper.GetUserId().Value;
+            entity.CreatedBy = _httpAccessorHelper.GetUserId() == null ? 0 : _httpAccessorHelper.GetUserId().Value;
             var addedEntity = await Context.AddAsync(entity); // await ile asenkron metot çağrısını bekleyin
             addedEntity.State = EntityState.Added;
             Context.SaveChanges();
@@ -53,7 +56,7 @@ namespace LogisticCompany.Core.DataAccess.Concrete
 
         public IDataResult<TEntity> Update(TEntity entity)
         {
-            entity.ModifyDate = DateTime.Now;
+            entity.ModifyDate = DateTime.Now.ToUniversalTime();
             entity.ModifyBy = _httpAccessorHelper.GetUserId().Value;
             var updatedEntity = Context.Entry(entity);
             updatedEntity.State = EntityState.Modified;
@@ -71,6 +74,10 @@ namespace LogisticCompany.Core.DataAccess.Concrete
 
         public IDataResult<List<TEntity>> AddRange(List<TEntity> entities)
         {
+            entities.ForEach(x =>
+            {
+                x.CreatedDate = DateTime.Now.ToUniversalTime();
+            });
             DbSet.AddRange(entities);
             Context.SaveChanges();
             return new SuccessDataResult<List<TEntity>>(entities);
@@ -79,7 +86,7 @@ namespace LogisticCompany.Core.DataAccess.Concrete
         {
             entities.ForEach(x =>
             {
-                x.ModifyDate = DateTime.Now;
+                x.ModifyDate = DateTime.Now.ToUniversalTime();
             });
 
             DbSet.UpdateRange(entities);

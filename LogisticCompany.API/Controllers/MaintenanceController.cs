@@ -63,6 +63,12 @@ namespace LogisticCompany.API.Controllers
             var result = _maintenanceService.Update(maintenanceDto);
             return StatusCode(result.StatusCode, result);
         }
+        [HttpPut("UpdateStatus")]
+        public IActionResult UpdateStatus(MaintenanceStatusDto maintenanceStatus)
+        {
+            var result = _maintenanceService.UpdateStatus(maintenanceStatus);
+            return StatusCode(result.Result.StatusCode, result.Result);
+        }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

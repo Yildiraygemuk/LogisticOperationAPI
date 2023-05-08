@@ -90,3 +90,4 @@ C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.API
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Newtonsoft.dll
+C:\Users\yildi\OneDrive\Masaüstü\Algorithm\LogisticCompany\LogisticCompany.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll

@@ -14,16 +14,13 @@ namespace LogisticCompany.Business.Concrete
     {
         private readonly IVehicleTypeRepository _vehicleTypeRepository;
         private readonly IMapper _mapper;
-        private readonly IHttpAccessorHelper _httpAccessorHelper;
-        public VehicleTypeService(IVehicleTypeRepository vehicleTypeRepository, IMapper mapper,IHttpAccessorHelper httpAccessorHelper)
+        public VehicleTypeService(IVehicleTypeRepository vehicleTypeRepository, IMapper mapper)
         {
             _vehicleTypeRepository = vehicleTypeRepository;
             _mapper = mapper;
-            _httpAccessorHelper = httpAccessorHelper;
         }
         public IDataResult<IQueryable<VehicleTypeVm>> GetListQueryable()
         {
-            var userId = _httpAccessorHelper.GetUserId();
             var entityList = _vehicleTypeRepository.GetAll().OrderByDescending(x => x.CreatedDate);
             var vehicleTypeVmList = _mapper.ProjectTo<VehicleTypeVm>(entityList);
             return new SuccessDataResult<IQueryable<VehicleTypeVm>>(vehicleTypeVmList);

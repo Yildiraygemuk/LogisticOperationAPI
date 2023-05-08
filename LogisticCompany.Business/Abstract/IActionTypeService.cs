@@ -6,10 +6,10 @@ namespace LogisticCompany.Business.Abstract
 {
     public interface IActionTypeService
     {
-        IDataResult<IQueryable<ActionTypeVm>> GetListQueryable();
-        IDataResult<ActionTypeVm> GetById(int id);
+        Task<IDataResult<IQueryable<ActionTypeVm>>> GetListQueryable();
+        Task<IDataResult<ActionTypeVm>> GetById(int id);
         Task<IDataResult<ActionTypeDto>> Post(ActionTypeDto actionTypeDto);
-        IDataResult<ActionTypeDto> Update(ActionTypeDto actionTypeDto);
-        IResult Delete(int id);
+        Task<IDataResult<ActionTypeDto>> Update(ActionTypeDto actionTypeDto);
+        Task<IResult> Delete(int id);
     }
 }

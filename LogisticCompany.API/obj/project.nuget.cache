@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "X1NZbv7wvlSHquLQQ1MjWud+HiD7J7dq8D3/7O0nodPQ5tlrTDzMvUG2ETMScx4u91G5AdUYXf0TQKrqbOd4wQ==",
+  "dgSpecHash": "40rY5eIro7FOINWFjMQTGiSNvGK1kWvwB55+Ly6G0W6lKFY4TxDFPCgm98tOozQLhdRdZIi7hCClZoTdtQ+9Uw==",
   "success": true,
   "projectFilePath": "C:\\Users\\yildi\\OneDrive\\Masaüstü\\Algorithm\\LogisticCompany\\LogisticCompany.API\\LogisticCompany.API.csproj",
   "expectedPackageFiles": [
@@ -125,6 +125,7 @@
     "C:\\Users\\yildi\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\yildi\\.nuget\\packages\\serilog\\2.12.0\\serilog.2.12.0.nupkg.sha512",
     "C:\\Users\\yildi\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\yildi\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\yildi\\.nuget\\packages\\swashbuckle.aspnetcore.newtonsoft\\6.5.0\\swashbuckle.aspnetcore.newtonsoft.6.5.0.nupkg.sha512",
     "C:\\Users\\yildi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\yildi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

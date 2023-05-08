@@ -19,15 +19,16 @@ namespace LogisticCompany.Business.Concrete
             _actionTypeRepository = actionTypeRepository;
             _mapper = mapper;
         }
-        public IDataResult<IQueryable<ActionTypeVm>> GetListQueryable()
+        public async Task<IDataResult<IQueryable<ActionTypeVm>>> GetListQueryable()
         {
-            var entityList = _actionTypeRepository.GetAll().OrderByDescending(x => x.CreatedDate);
+            var entityList = await _actionTypeRepository.GetAllAsync();
+            var sortedEntityList = entityList.OrderByDescending(x => x.CreatedDate);
             var actionTypeVmList = _mapper.ProjectTo<ActionTypeVm>(entityList);
             return new SuccessDataResult<IQueryable<ActionTypeVm>>(actionTypeVmList);
         }
-        public IDataResult<ActionTypeVm> GetById(int id)
+        public async Task<IDataResult<ActionTypeVm>> GetById(int id)
         {
-            var entity = _actionTypeRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            var entity = await _actionTypeRepository.GetByIdAsync(id);
             var actionTypeVm = _mapper.Map<ActionTypeVm>(entity);
             return new SuccessDataResult<ActionTypeVm>(actionTypeVm);
         }
@@ -37,17 +38,17 @@ namespace LogisticCompany.Business.Concrete
             await _actionTypeRepository.AddAsync(addEntity);
             return new SuccessDataResult<ActionTypeDto>(actionTypeDto);
         }
-        public IDataResult<ActionTypeDto> Update(ActionTypeDto actionTypeDto)
+        public async Task<IDataResult<ActionTypeDto>> Update(ActionTypeDto actionTypeDto)
         {
-            var actionType = _actionTypeRepository.GetById(actionTypeDto.Id);
+            var actionType = await _actionTypeRepository.GetByIdAsync(actionTypeDto.Id);
             if (actionType == null) { throw new NotFoundException(actionTypeDto.Id); }
             actionType = _mapper.Map(actionTypeDto, actionType);
             _actionTypeRepository.Update(actionType);
             return new SuccessDataResult<ActionTypeDto>(actionTypeDto);
         }
-        public IResult Delete(int id)
+        public async Task<IResult> Delete(int id)
         {
-            var entity = _actionTypeRepository.GetById(id);
+            var entity = await _actionTypeRepository.GetByIdAsync(id);
             if (entity == null)
             {
                 return new ErrorResult();
